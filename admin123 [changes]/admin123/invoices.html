@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>Invoices - HRMS admin template</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -105,9 +105,9 @@
 							</div>
 						</div>
 					</li>
-					<li class="dropdown hidden-xs">
+					<!-- <li class="dropdown hidden-xs">
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
-					</li>	
+					</li>	 -->
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
 							<span class="user-img"><img class="img-circle" src="assets/img/user.jpg" width="40" alt="Admin">
@@ -118,7 +118,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="profile.html">My Profile</a></li>
 							<li><a href="edit-profile.html">Edit Profile</a></li>
-							<li><a href="settings.html">Settings</a></li>
+							<!-- <li><a href="settings.html">Settings</a></li> -->
 							<li><a href="login.html">Logout</a></li>
 						</ul>
 					</li>
@@ -128,7 +128,7 @@
 					<ul class="dropdown-menu pull-right">
 						<li><a href="profile.html">My Profile</a></li>
 						<li><a href="edit-profile.html">Edit Profile</a></li>
-						<li><a href="settings.html">Settings</a></li>
+						<!-- <li><a href="settings.html">Settings</a></li> -->
 						<li><a href="login.html">Logout</a></li>
 					</ul>
 				</div>
@@ -141,48 +141,46 @@
 								<a href="index.html"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
 							</li>
 							<li> 
-								<a href="clients.html"><i class="la la-users"></i> <span>Clients</span></a>
+								<a href="clients.html"><i class="la la-users"></i> <span>Browsing Sites</span></a>
 							</li>
 							<li> 
-								<a href="projects.html"><i class="la la-rocket"></i> <span>Projects</span></a>
+								<a href="projects.html"><i class="la la-rocket"></i> <span>Top Genres</span></a>
 							</li>
 							
 							<li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="la la-money"></i> <span> Subscription </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="assets.html"> Assets </a></li>
-									<li><a href="salary-view.html"> Payslip </a></li>
+									<li><a href="invoices.html"> Subscription History </a></li>
+									<li><a href="salary-view.html"> Invoice </a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Timing Sheet</span></a>
+								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
 							</li>
 							<li> 
-								<a href="tickets.html"><i class="la la-ticket"></i> <span>Tickets</span></a>
+								<a href="tickets.html"><i class="la la-ticket"></i> <span>consultations</span></a>
 							</li>
 							<li> 
 								<a href="events.html"><i class="la la-calendar"></i> <span>Events</span></a>
 							</li>
 							<li> 
-								<a href="chat.html"><i class="la la-comments"></i> <span>Chat</span> <span class="badge bg-primary pull-right">5</span></a>
-							</li>
-							<li> 
-								<a href="activities.html"><i class="la la-bell"></i> <span>Activities</span></a>
-							</li>        
-								</ul>
+								<a href="chat.html"><i class="la la-comments"></i> <span>Contact Us</span> <span class="badge bg-primary pull-right">5</span></a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
+
+			<!-- This web page content starts here -->
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
 						<div class="col-sm-8">
-							<h4 class="page-title">Invoices</h4>
+							<h4 class="page-title">My Subscription</h4>
 						</div>
 						<div class="col-sm-4 text-right m-b-30">
-							<a href="create-invoice.html" class="btn btn-primary rounded"><i class="fa fa-plus"></i> Create New Invoice</a>
+							<a href="create-invoice.html" class="btn btn-primary rounded"><i class="fa fa-plus"></i> Buy Plan</a>
 						</div>
 					</div>
 					<div class="row filter-row">
@@ -205,7 +203,7 @@
 									<option value="">Select Status</option>
 									<option value="">Pending</option>
 									<option value="1">Paid</option>
-									<option value="1">Partially Paid</option>
+									<!-- <option value="1">Partially Paid</option> -->
 								</select>
 							</div>
 						</div>
@@ -213,20 +211,21 @@
 							<a href="#" class="btn btn-success btn-block"> Search </a>  
 						</div>     
                     </div>
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<table class="table table-striped custom-table m-b-0">
+								<table class="table table-striped custom-table m-b-0 datatable">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>Invoice Number</th>
-											<th>Client</th>
-											<th>Created Date</th>
-											<th>Due Date</th>
-											<th>Amount</th>
-											<th>Status</th>
-											<th class="text-right">Action</th>
+											<th class="text-center">#</th>
+											<th class="text-center">Invoice Number</th>
+											<th class="text-center">Client</th>
+											<th class="text-center">Created Date</th>
+											<th class="text-center">Due Date</th>
+											<th class="text-center">Amount</th>
+											<th class="text-center">Status</th>
+											<th class="text-right">Invoice</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -239,15 +238,7 @@
 											<td>$2099</td>
 											<td><span class="label label-success-border">Paid</span></td>
 											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Download</a></li>
-														<li><a href="#"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
+												<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i>View</a></li>
 											</td>
 										</tr>
 										<tr>
@@ -259,35 +250,7 @@
 											<td>$2099</td>
 											<td><span class="label label-info-border">Sent</span></td>
 											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Download</a></li>
-														<li><a href="#"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td><a href="invoice-view.html">#INV-0003</a></td>
-											<td>Cream Inc</td>
-											<td>1 Sep 2017</td>
-											<td>7 Sep 2017</td>
-											<td>$2099</td>
-											<td><span class="label label-warning-border">Partially Paid</span></td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Download</a></li>
-														<li><a href="#"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
+												<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i>View</a></li>
 											</td>
 										</tr>
 									</tbody>
@@ -296,7 +259,7 @@
 						</div>
 					</div>
                 </div>
-				<div class="notification-box">
+				<!-- <div class="notification-box">
 					<div class="msg-sidebar notifications msg-noti">
 						<div class="topnav-dropdown-header">
 							<span>Messages</span>
@@ -504,9 +467,9 @@
 							<a href="chat.html">See all messages</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
             </div>
-			<div id="delete_holiday" class="modal fade" role="dialog">
+			<!-- <div id="delete_holiday" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header bg-danger"> <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -523,8 +486,8 @@
 						</form>
 					</div>
 				</div>
-			</div>
-			<div id="add_holiday" class="modal fade" role="dialog">
+			</div> -->
+			<!-- <div id="add_holiday" class="modal fade" role="dialog">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-header bg-primary">
@@ -548,8 +511,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="edit_holiday" class="modal fade" role="dialog">
+			</div> -->
+			<!-- <div id="edit_holiday" class="modal fade" role="dialog">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-header bg-success">
@@ -573,7 +536,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
         <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>

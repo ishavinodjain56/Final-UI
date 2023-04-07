@@ -153,6 +153,7 @@ textarea.form-control {
 }
 .table > tbody > tr > td {
 	font-weight: 300;
+	text-align: center;
 }
 .table > thead > tr > th {
 	font-weight: normal;
@@ -467,16 +468,16 @@ table.dataTable {
 	border: 1px solid #482fe9;
 }
 .btn-primary {
-	background-color: #00c5fb;
-	border: 1px solid #00c5fb;
+	background-color: #55ce63;
+	border: 1px solid #55ce63;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #00b7ed;
-	border: 1px solid #00b7ed;
+	background-color: #4ab657;
+	border: 1px solid #4ab657;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -487,8 +488,8 @@ table.dataTable {
 .open > .dropdown-toggle.btn-primary.focus,
 .open > .dropdown-toggle.btn-primary:focus,
 .open > .dropdown-toggle.btn-primary:hover {
-	background-color: #00b7ed;
-	border: 1px solid #00b7ed;
+	background-color: #4ab657;
+	border: 1px solid #4ab657;
 }
 .btn-success {
 	background-color: #55ce63;
@@ -4591,14 +4592,14 @@ table.table-inbox tbody tr.checked {
 		width: 600px;
 	}
 	.custom-modal button.close {
-		background: #00c5fb;
-		background: -moz-linear-gradient(left, #00c5fb 0%, #0253cc 100%);
-		background: -webkit-gradient(left top, right top, color-stop(0%, #00c5fb), color-stop(100%, #0253cc));
-		background: -webkit-linear-gradient(left, #00c5fb 0%, #0253cc 100%);
-		background: -o-linear-gradient(left, #00c5fb 0%, #0253cc 100%);
-		background: -ms-linear-gradient(left, #00c5fb 0%, #0253cc 100%);
-		background: linear-gradient(to right, #00c5fb 0%, #0253cc 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c5fb', endColorstr='#0253cc', GradientType=1);
+		background: #55CE63;
+		background: -moz-linear-gradient(left, #55CE63 0%, #037804 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, #55CE63), color-stop(100%, #037804));
+		background: -webkit-linear-gradient(left, #55CE63 0%, #037804 100%);
+		background: -o-linear-gradient(left, #55CE63 0%, #037804 100%);
+		background: -ms-linear-gradient(left, #55CE63 0%, #037804 100%);
+		background: linear-gradient(to right, #55CE63 0%, #037804 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55CE63', endColorstr='#037804', GradientType=1);
 		border-radius: 50%;
 		height: 50px;
 		left: -15px;
