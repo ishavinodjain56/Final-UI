@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     
-<!-- Mirrored from dreamguys.co.in/smarthr/blue/activities.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:27 GMT -->
+<!-- Mirrored from dreamguys.co.in/smarthr/blue//activities by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:27 GMT -->
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -26,7 +26,7 @@
             <div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
-						<img src="static/img/logo.png" width="40" height="40" alt="">
+						<img src="{{ url_for('static', filename='img/logo.png') }}" width="40" height="40" alt="">
 					</a>
                 </div>
 				<a id="toggle_btn" href="javascript:void(0);"><i class="la la-bars"></i></a>
@@ -44,10 +44,10 @@
 							<div class="drop-scroll">
 								<ul class="media-list">
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/activities">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="static/img/user.jpg" class="img-responsive img-circle">
+													<img alt="John Doe" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</span>
 											</div>
 											<div class="media-body">
@@ -57,7 +57,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/activities">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -68,7 +68,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/activities">
 											<div class="media-left">
 												<span class="avatar">L</span>
 											</div>
@@ -79,7 +79,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/activities">
 											<div class="media-left">
 												<span class="avatar">G</span>
 											</div>
@@ -90,7 +90,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/activities">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -103,7 +103,7 @@
 								</ul>
 							</div>
 							<div class="topnav-dropdown-footer">
-								<a href="activities.html">View all Notifications</a>
+								<a href="/activities">View all Notifications</a>
 							</div>
 						</div>
 					</li>
@@ -152,7 +152,7 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="assets.html"> Assets </a></li>
+									<li><a href="/assets"> Assets </a></li>
 									<li><a href="salary-view.html"> Payslip </a></li>
 								</ul>
 							</li>
@@ -169,7 +169,7 @@
 								<a href="chat.html"><i class="la la-comments"></i> <span>Chat</span> <span class="badge bg-primary pull-right">5</span></a>
 							</li>
 							<li> 
-								<a href="activities.html"><i class="la la-bell"></i> <span>Activities</span></a>
+								<a href="/activities"><i class="la la-bell"></i> <span>Activities</span></a>
 							</li>        
 								</ul>
 							</li>
@@ -489,5 +489,5 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
     </body>
 
-<!-- Mirrored from dreamguys.co.in/smarthr/blue/activities.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:27 GMT -->
+<!-- Mirrored from dreamguys.co.in/smarthr/blue//activities by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:27 GMT -->
 </html>
