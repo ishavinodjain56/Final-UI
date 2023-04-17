@@ -5,6 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>Invoices - HRMS admin template</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
@@ -14,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 		<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
@@ -148,7 +150,7 @@
 							</li>
 							
 							<li>
-								<a href="invoices.html"><i class="la la-money"></i> <span> Subscription </span> </a>
+								<a href="invoices.html"><i class="la la-money"></i> <span>Subscription </span></a>
 							</li>
 							<li> 
 								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
@@ -176,7 +178,7 @@
 							<h4 class="page-title">My Subscription</h4>
 						</div>
 						<div class="col-sm-4 text-right m-b-30">
-							<a href="create-invoice.html" class="btn btn-primary rounded"><i class="fa fa-plus"></i> Buy Plan</a>
+							<a href="#" class="btn btn-primary rounded pull-right" data-toggle="modal" data-target="#add_subscription"><i class="fa fa-plus"></i> Buy Plan</a>
 						</div>
 					</div>
 					<div class="row filter-row">
@@ -533,6 +535,110 @@
 					</div>
 				</div>
 			</div> -->
+
+
+		<div id="add_subscription" class="modal custom-modal fade" role="dialog">
+				<div class="modal-dialog">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-content modal-lg">
+						<div class="modal-header">
+							<h4 class="modal-title">Buy Subscription</h4>
+						</div>
+						<div class="modal-body">
+							<div class="container" style="padding: 0px">
+								<div class="row">
+									<div class="card-deck">
+		<!-- 1st Card start-->			<div class="col-md-3">
+											<div class="card">
+												<div class="card-header">
+													Basic Plan
+												</div>
+												<div class="card-body">
+													<h5 class="card-title">$9.99/month</h5>
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item">1 child account can be created</li>
+														<li class="list-group-item">No Events scheduling facility</li>
+														<li class="list-group-item">No Access to premium content</li>
+													</ul>
+												</div>
+												<div class="card-footer">
+													<button class="btn btn-block btn-subscribe">Subscribe Now</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="card">
+												<div class="card-header">
+													Premium Plan
+												</div>
+												<div class="card-body">
+													<h5 class="card-title">$14.99/month</h5>
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item">2 child account can be created</li>
+														<li class="list-group-item">Events scheduling facility</li>
+														<li class="list-group-item">Access to premium content</li>
+													</ul>
+												</div>
+												<div class="card-footer">
+													<button class="btn btn-block btn-subscribe">Subscribe Now</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="card">
+												<div class="card-header">
+													Premium Plan
+												</div>
+												<div class="card-body">
+													<h5 class="card-title">$19.99 3-month</h5>
+													<ul class="list-group list-group-flush">
+														<li class="list-group-item">2 child account can be created</li>
+														<li class="list-group-item">Events scheduling facility</li>
+														<li class="list-group-item">Access to premium content</li>
+													</ul>
+												</div>
+												<div class="card-footer">
+													<button class="btn btn-block btn-subscribe">Subscribe Now</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<style>
+		.card {
+			margin: 20px;
+		}
+		.card-header {
+			background-color: #55ce63;
+			color: white;
+			text-align: center;
+			font-weight: bold;
+			padding: 10px;
+		}
+		.card-title{
+			text-align: center;
+			padding: 12px;
+			margin: 0px;
+		}
+		.btn-subscribe {
+			background-color: #55ce63;
+			color: white;
+			border-radius: 0;
+		}
+		.btn-subscribe:hover {
+			background-color: #4ab657;
+		}
+	</style>
+
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
         <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>

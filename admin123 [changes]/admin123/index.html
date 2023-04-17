@@ -143,8 +143,13 @@
 								<a href="projects.html"><i class="la la-rocket"></i> <span>Top Genres</span></a>
 							</li>
 							
+							<!-- <li class="submenu"> -->
 							<li>
 								<a href="invoices.html"><i class="la la-money"></i> <span> Subscription </span> </a>
+								<!-- <ul style="display: none;"> -->
+									<!-- <li><i class="la la-money"></i><a href="invoices.html"> Subscription History </a></li> -->
+									<!-- <li><a href="salary-view.html"> Invoice </a></li> -->
+								<!-- </ul> -->
 							</li>
 							<li> 
 								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
@@ -173,7 +178,7 @@
 								<span class="dash-widget-icon"><i class="bi bi-clock-fill"></i></span>
 								<div class="dash-widget-info">
 									<h3>1120</h3>
-									<span>Screen Time [mins]</span>
+									<span>Screen Time<br>[mins]</span>
 								</div>
 							</div>
 						</div>
@@ -182,7 +187,7 @@
 								<span class="dash-widget-icon"><i class="bi bi-browser-chrome"></i></span>
 								<div class="dash-widget-info">
 									<h3>140</h3>
-									<span>WebPages Visited</span>
+									<span>WebPages<br>Visited</span>
 								</div>
 							</div>
 						</div>
@@ -191,7 +196,7 @@
 								<span class="dash-widget-icon"><i class="bi bi-clipboard-heart"></i></span>
 								<div class="dash-widget-info">
 									<h3>Sports</h3>
-									<span>Child's Major Intrest</span>
+									<span>Child's<br>Major Interest</span>
 								</div>
 							</div>
 						</div>
@@ -216,10 +221,11 @@
 								</div>
 								<div class="col-md-6 text-center">
 									<div class="card-box">
-										<h3 class="card-title">WEBPAGES VISTED</h3>
-										<div id="line-charts"></div>
+										<h3 class="card-title">WEBPAGES</h3>
+										<div id="pie-charts"></div>
 									</div>
 								</div>
+								
 								<div class="col-md-6 text-center">
 									<div class="card-box">
 										<h3 class="card-title">Screen Time</h3>
@@ -228,8 +234,8 @@
 								</div>
 								<div class="col-md-6 text-center">
 									<div class="card-box">
-										<h3 class="card-title">WEBPAGES</h3>
-										<div id="pie-charts"></div>
+										<h3 class="card-title">WEBPAGES VISTED</h3>
+										<div id="line-charts"></div>
 									</div>
 								</div>
 							</div>
@@ -246,42 +252,35 @@
 										<table class="table table-striped custom-table m-b-0">
 											<thead>
 												<tr>
-													<th>Event Id</th>
-													<th>Event Name</th>
-													<th>Due Date</th>
-													<th>Status</th>
+													<th class="text-center">Event Id</th>
+													<th class="text-center">Event Name</th>
+													<th class="text-center">Due Date</th>
+													<th class="text-center">Status</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td><a href="invoice-view.html">#Evnt-0001</a></td>
-													<td>
-														<h2><a href="#">Hazel Nutt</a></h2>
-													</td>
+													<td>#Evnt-0001</td>
+													<td>Hazel Nutt</td>
 													<td>8 Aug 2017</td>
-													
 													<td>
 														<span class="label label-warning-border">Partially Done</span>
 													</td>
 												</tr>
+
 												<tr>
-													<td><a href="invoice-view.html">#Evnt-0002</a></td>
-													<td>
-														<h2><a href="#">Paige Turner</a></h2>
-													</td>
+													<td>#Evnt-0002</td>
+													<td>Paige Turner</td>
 													<td>17 Sep 2017</td>
-													
 													<td>
 														<span class="label label-success-border">Completed</span>
 													</td>
 												</tr>
+
 												<tr>
-													<td><a href="invoice-view.html">#Evnt-0003</a></td>
-													<td>
-														<h2><a href="#">Ben Dover</a></h2>
-													</td>
+													<td>#Evnt-0003</td>
+													<td>Ben Dover</td>
 													<td>30 Nov 2017</td>
-													
 													<td>
 														<span class="label label-danger-border">Pending</span>
 													</td>
@@ -291,7 +290,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="invoices.html" class="text-primary">View all Events</a>
+									<a href="events.html" class="text-primary">View all Events</a>
 								</div>
 							</div>
 						</div>
@@ -305,37 +304,32 @@
 										<table class="table table-striped custom-table m-b-0">
 											<thead>
 												<tr>
-													<th>Invoice ID</th>
-													<th>Name</th>
-													<th>Payment Type</th>
-													<th>Paid Date</th>
-													<th>Paid Amount</th>
+													<th class="text-center">Invoice ID</th>
+													<th class="text-center">Name</th>
+													<th class="text-center">Payment Type</th>
+													<th class="text-center">Paid Date</th>
+													<th class="text-center">Paid Amount</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td><a href="invoice-view.html">#INV-0004</a></td>
-													<td>
-														<h2><a href="#">Barry Cuda</a></h2>
-													</td>
+													<td>#INV-0004</td>
+													<td>Barry Cuda</td>
 													<td>Paypal</td>
 													<td>11 Jun 2017</td>
 													<td>$380</td>
 												</tr>
+
 												<tr>
-													<td><a href="invoice-view.html">#INV-0005</a></td>
-													<td>
-														<h2><a href="#">Tressa Wexler</a></h2>
-													</td>
+													<td>#INV-0005</td>
+													<td>Tressa Wexler</td>
 													<td>Paypal</td>
 													<td>21 Jul 2017</td>
 													<td>$500</td>
 												</tr>
 												<tr>
-													<td><a href="invoice-view.html">#INV-0006</a></td>
-													<td>
-														<h2><a href="#">Ruby Bartlett</a></h2>
-													</td>
+													<td>#INV-0006</td>
+													<td>Ruby Bartlett</td>
 													<td>Paypal</td>
 													<td>28 Aug 2017</td>
 													<td>$60</td>
@@ -345,7 +339,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="invoices.html" class="text-primary">View all subscriptions</a>
+									<a href="invoices.html" class="text-primary">View all Subscriptions</a>
 								</div>
 							</div>
 						</div>
@@ -361,16 +355,15 @@
 										<table class="table table-striped custom-table m-b-0">
 											<thead>
 												<tr>
-													<th class="col-md-3">website Name</th>
-													<th class="col-md-3">Time spent</th>
+													<th class="col-md-3 text-center">Website Name</th>
+													<th class="col-md-3 text-center">Time spent</th>
 													
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">Food and Drinks</a></h2>
-														
 													</td>
 													<td>
 														<div class="progress progress-xs progress-striped">
@@ -379,7 +372,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">School Guru</a></h2>
 														
@@ -391,7 +384,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">Penabook</a></h2>
 														
@@ -403,7 +396,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">Harvey Clinic</a></h2>
 														
@@ -415,7 +408,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">The Gigs</a></h2>
 														
@@ -446,18 +439,17 @@
 										<table class="table table-striped custom-table m-b-0">
 											<thead>
 												<tr>
-													<th class="col-md-3">Date </th>
-													<th class="col-md-3">Time Spent</th>
+													<th class="col-md-3 text-center">Date </th>
+													<th class="col-md-3 text-center">Time Spent</th>
 													
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">28/02/2023</a></h2>
 														<small class="block text-ellipsis">
 															<span class="text-xs">15%</span> <span class="text-muted">more</span>
-														
 														</small>
 													</td>
 													<td>
@@ -467,7 +459,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">27/02/2023</a></h2>
 														<small class="block text-ellipsis">
@@ -481,7 +473,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">26/02/2023</a></h2>
 														<small class="block text-ellipsis">
@@ -496,7 +488,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">25/02/2023</a></h2>
 														<small class="block text-ellipsis">
@@ -510,7 +502,7 @@
 													</td>
 													
 												</tr>
-												<tr>
+												<tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">24/02/2023</a></h2>
 														<small class="block text-ellipsis">
