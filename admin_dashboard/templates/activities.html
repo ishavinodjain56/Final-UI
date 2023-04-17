@@ -5,13 +5,17 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.png">
         <title>Activities - HRMS admin template</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/line-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 		<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
@@ -22,7 +26,7 @@
             <div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
-						<img src="assets/img/logo.png" width="40" height="40" alt="">
+						<img src="static/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
 				<a id="toggle_btn" href="javascript:void(0);"><i class="la la-bars"></i></a>
@@ -43,7 +47,7 @@
 										<a href="activities.html">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="John Doe" src="static/img/user.jpg" class="img-responsive img-circle">
 												</span>
 											</div>
 											<div class="media-body">
@@ -108,7 +112,7 @@
 					</li>	
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="assets/img/user.jpg" width="40" alt="Admin">
+							<span class="user-img"><img class="img-circle" src="{{ url_for('static', filename='img/user.jpg') }}" width="40" alt="Admin">
 							<span class="status online"></span></span>
 							<span>Admin</span>
 							<i class="caret"></i>
@@ -188,7 +192,7 @@
 										<li>
 											<div class="activity-user">
 												<a href="profile.html" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
-													<img alt="Lesley Grauer" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="Lesley Grauer" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
@@ -212,7 +216,7 @@
 										<li>
 											<div class="activity-user">
 												<a href="profile.html" title="Catherine Manseau" data-toggle="tooltip" class="avatar">
-													<img alt="Catherine Manseau" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="Catherine Manseau" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
@@ -225,7 +229,7 @@
 										<li>
 											<div class="activity-user">
 												<a href="#" title="Bernardo Galaviz" data-toggle="tooltip" class="avatar">
-													<img alt="Bernardo Galaviz" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="Bernardo Galaviz" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
@@ -238,7 +242,7 @@
 										<li>
 											<div class="activity-user">
 												<a href="profile.html" title="Mike Litorus" data-toggle="tooltip" class="avatar">
-													<img alt="Mike Litorus" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="Mike Litorus" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
@@ -251,7 +255,7 @@
 										<li>
 											<div class="activity-user">
 												<a href="profile.html" title="Jeffery Lalor" data-toggle="tooltip" class="avatar">
-													<img alt="Jeffery Lalor" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="Jeffery Lalor" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
@@ -479,10 +483,10 @@
             </div>
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
-        <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.slimscroll.js"></script>
-		<script type="text/javascript" src="assets/js/app.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
     </body>
 
 <!-- Mirrored from dreamguys.co.in/smarthr/blue/activities.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:27 GMT -->
