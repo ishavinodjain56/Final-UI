@@ -15,6 +15,9 @@ def activitiesPage():
 def assetsPage():
     return render_template('assets.html')
 
+@app.route('/login')
+def loginPage():
+    return render_template('login_page.html')
+
 if __name__ == '__main__':
-    port = 5000
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True)
