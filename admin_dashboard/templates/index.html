@@ -5,15 +5,20 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <link rel="shortcut icon" type="image/x-icon" href="static/img/logo.png">
         <title>Dashboard</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/plugins/morris/morris.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/line-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/morris/morris.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 		
     </head>
     <body>
@@ -21,8 +26,8 @@
         <div class="main-wrapper">
             <div class="header">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
-						<img src="assets/img/logo.png" width="40" height="40" alt="">
+                    <a href="/dashboard" class="logo">
+						<img src="static/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
 				<a id="toggle_btn" href="javascript:void(0);"><i class="la la-bars"></i></a>
@@ -40,10 +45,10 @@
 							<div class="drop-scroll">
 								<ul class="media-list">
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="John Doe" src="static/img/user.jpg" class="img-responsive img-circle">
 												</span>
 											</div>
 											<div class="media-body">
@@ -53,7 +58,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -64,7 +69,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">L</span>
 											</div>
@@ -75,7 +80,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">G</span>
 											</div>
@@ -86,7 +91,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="activities.html">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -99,7 +104,7 @@
 								</ul>
 							</div>
 							<div class="topnav-dropdown-footer">
-								<a href="activities.html">View all Notifications</a>
+								<a href="/notifications">View all Notifications</a>
 							</div>
 						</div>
 					</li>
@@ -107,25 +112,25 @@
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
 					</li>	 -->
 					<li class="dropdown">
-						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="assets/img/user.jpg" width="40" alt="Admin">
+						<a href="/profile" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+							<span class="user-img"><img class="img-circle" src="static/img/user.jpg" width="40" alt="Admin">
 							<span class="status online"></span></span>
 							<span>Admin</span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.html">My Profile</a></li>
-							<li><a href="edit-profile.html">Edit Profile</a></li>
-							<li><a href="login.html">Logout</a></li>
+							<li><a href="/profile">My Profile</a></li>
+							<li><a href="/editprofile">Edit Profile</a></li>
+							<li><a href="/login">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
 				<div class="dropdown mobile-user-menu pull-right">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="profile.html">My Profile</a></li>
-						<li><a href="edit-profile.html">Edit Profile</a></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="/profile">My Profile</a></li>
+						<li><a href="/editprofile">Edit Profile</a></li>
+						<li><a href="/login">Logout</a></li>
 					</ul>
 				</div>
             </div>
@@ -134,34 +139,30 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="active"> 
-								<a href="index.html"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
+								<a href="/dashboard"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
 							</li>
 							<li> 
-								<a href="clients.html"><i class="la la-users"></i> <span>Browsing Sites</span></a>
+								<a href="/browsing_sites"><i class="la la-users"></i> <span>Browsing Sites</span></a>
 							</li>
 							<li> 
-								<a href="projects.html"><i class="la la-rocket"></i> <span>Top Genres</span></a>
+								<a href="/top_genres"><i class="la la-rocket"></i> <span>Top Genres</span></a>
 							</li>
 							
 							<!-- <li class="submenu"> -->
 							<li>
-								<a href="invoices.html"><i class="la la-money"></i> <span> Subscription </span> </a>
-								<!-- <ul style="display: none;"> -->
-									<!-- <li><i class="la la-money"></i><a href="invoices.html"> Subscription History </a></li> -->
-									<!-- <li><a href="salary-view.html"> Invoice </a></li> -->
-								<!-- </ul> -->
+								<a href="/subscription"><i class="la la-money"></i> <span> Subscription </span> </a>
 							</li>
 							<li> 
-								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
+								<a href="/screen_time"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
 							</li>
 							<li> 
-								<a href="tickets.html"><i class="la la-ticket"></i> <span>consultations</span></a>
+								<a href="/tickets"><i class="la la-ticket"></i> <span>consultations</span></a>
 							</li>
 							<li> 
-								<a href="events.html"><i class="la la-calendar"></i> <span>Events</span></a>
+								<a href="/events"><i class="la la-calendar"></i> <span>Events</span></a>
 							</li>
 							<li> 
-								<a href="chat.html"><i class="la la-comments"></i> <span>Contact Us</span> <span class="badge bg-primary pull-right">5</span></a>
+								<a href="/chat"><i class="la la-comments"></i> <span>Contact Us</span> <span class="badge bg-primary pull-right">5</span></a>
 							</li>
 							<!-- <li> 
 								<a href="activities.html"><i class="la la-bell"></i> <span>Real-Time Activities</span></a>
@@ -290,7 +291,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="events.html" class="text-primary">View all Events</a>
+									<a href="/events" class="text-primary">View all Events</a>
 								</div>
 							</div>
 						</div>
@@ -339,7 +340,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="invoices.html" class="text-primary">View all Subscriptions</a>
+									<a href="/subscription" class="text-primary">View all Subscriptions</a>
 								</div>
 							</div>
 						</div>
@@ -425,7 +426,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="clients.html" class="text-primary">View all websites visted</a>
+									<a href="/browsing_sites" class="text-primary">View all websites visted</a>
 								</div>
 							</div>
 						</div>
@@ -521,7 +522,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="projects.html" class="text-primary">View all Days</a>
+									<a href="/top_genres" class="text-primary">View all Days</a>
 								</div>
 							</div>
 						</div>
@@ -531,12 +532,19 @@
 			</div>
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
-        <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+        <!-- <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.slimscroll.js"></script>
 		<script type="text/javascript" src="assets/plugins/morris/morris.min.js"></script>
 		<script type="text/javascript" src="assets/plugins/raphael/raphael-min.js"></script>
 		<script type="text/javascript" src="assets/js/app.js"></script>
-		<script type="text/javascript" src="assets/js/chart.js"></script>
+		<script type="text/javascript" src="assets/js/chart.js"></script> -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='plugins/morris/morris.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='plugins/raphael/raphael-min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/chart.js') }}"></script>
     </body>
 </html>

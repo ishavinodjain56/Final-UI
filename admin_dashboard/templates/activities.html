@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="static/img/logo.png">
         <title>Activities - HRMS admin template</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -25,8 +25,8 @@
         <div class="main-wrapper">
             <div class="header">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
-						<img src="{{ url_for('static', filename='img/logo.png') }}" width="40" height="40" alt="">
+                    <a href="/dashboard" class="logo">
+						<img src="static/img/logo.png" width="40" height="40" alt="">
 					</a>
                 </div>
 				<a id="toggle_btn" href="javascript:void(0);"><i class="la la-bars"></i></a>
@@ -44,10 +44,10 @@
 							<div class="drop-scroll">
 								<ul class="media-list">
 									<li class="media notification-message">
-										<a href="/activities">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+													<img alt="John Doe" src="static/img/user.jpg" class="img-responsive img-circle">
 												</span>
 											</div>
 											<div class="media-body">
@@ -57,7 +57,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="/activities">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -68,7 +68,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="/activities">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">L</span>
 											</div>
@@ -79,7 +79,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="/activities">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">G</span>
 											</div>
@@ -90,7 +90,7 @@
 										</a>
 									</li>
 									<li class="media notification-message">
-										<a href="/activities">
+										<a href="/notifications">
 											<div class="media-left">
 												<span class="avatar">V</span>
 											</div>
@@ -103,35 +103,33 @@
 								</ul>
 							</div>
 							<div class="topnav-dropdown-footer">
-								<a href="/activities">View all Notifications</a>
+								<a href="/notifications">View all Notifications</a>
 							</div>
 						</div>
 					</li>
-					<li class="dropdown hidden-xs">
+					<!-- <li class="dropdown hidden-xs">
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
-					</li>	
+					</li>	 -->
 					<li class="dropdown">
-						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="{{ url_for('static', filename='img/user.jpg') }}" width="40" alt="Admin">
+						<a href="/profile" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+							<span class="user-img"><img class="img-circle" src="static/img/user.jpg" width="40" alt="Admin">
 							<span class="status online"></span></span>
 							<span>Admin</span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.html">My Profile</a></li>
-							<li><a href="edit-profile.html">Edit Profile</a></li>
-							<li><a href="settings.html">Settings</a></li>
-							<li><a href="login.html">Logout</a></li>
+							<li><a href="/profile">My Profile</a></li>
+							<li><a href="/editprofile">Edit Profile</a></li>
+							<li><a href="/login">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
 				<div class="dropdown mobile-user-menu pull-right">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="profile.html">My Profile</a></li>
-						<li><a href="edit-profile.html">Edit Profile</a></li>
-						<li><a href="settings.html">Settings</a></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="/profile">My Profile</a></li>
+						<li><a href="/editprofile">Edit Profile</a></li>
+						<li><a href="/login">Logout</a></li>
 					</ul>
 				</div>
             </div>
@@ -140,43 +138,38 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="active"> 
-								<a href="index.html"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
+								<a href="/dashboard"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
 							</li>
 							<li> 
-								<a href="clients.html"><i class="la la-users"></i> <span>Clients</span></a>
+								<a href="/browsing_sites"><i class="la la-users"></i> <span>Browsing Sites</span></a>
 							</li>
 							<li> 
-								<a href="projects.html"><i class="la la-rocket"></i> <span>Projects</span></a>
+								<a href="/top_genres"><i class="la la-rocket"></i> <span>Top Genres</span></a>
 							</li>
 							
-							<li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="/assets"> Assets </a></li>
-									<li><a href="salary-view.html"> Payslip </a></li>
-								</ul>
+							<!-- <li class="submenu"> -->
+							<li>
+								<a href="/subscription"><i class="la la-money"></i> <span> Subscription </span> </a>
 							</li>
 							<li> 
-								<a href="worksheet.html"><i class="la la-clock-o"></i> <span>Timing Sheet</span></a>
+								<a href="/screen_time"><i class="la la-clock-o"></i> <span>Screen Time</span></a>
 							</li>
 							<li> 
-								<a href="tickets.html"><i class="la la-ticket"></i> <span>Tickets</span></a>
+								<a href="/tickets"><i class="la la-ticket"></i> <span>consultations</span></a>
 							</li>
 							<li> 
-								<a href="events.html"><i class="la la-calendar"></i> <span>Events</span></a>
+								<a href="/events"><i class="la la-calendar"></i> <span>Events</span></a>
 							</li>
 							<li> 
-								<a href="chat.html"><i class="la la-comments"></i> <span>Chat</span> <span class="badge bg-primary pull-right">5</span></a>
-							</li>
-							<li> 
-								<a href="/activities"><i class="la la-bell"></i> <span>Activities</span></a>
-							</li>        
-								</ul>
-							</li>
+								<a href="/chat"><i class="la la-comments"></i> <span>Contact Us</span> <span class="badge bg-primary pull-right">5</span></a>
+							</li>      
 						</ul>
 					</div>
 				</div>
 			</div>
+
+			<!-- This web page content starts here -->
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -191,37 +184,37 @@
 									<ul class="activity-list">
 										<li>
 											<div class="activity-user">
-												<a href="profile.html" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
-													<img alt="Lesley Grauer" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+												<a href="/profile" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
+													<img alt="Lesley Grauer" src="static/img/user.jpg" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Lesley Grauer</a> added new task <a href="#">Harvey Clinic</a>
+													<a href="/profile" class="name">Lesley Grauer</a> added new task <a href="#">Harvey Clinic</a>
 													<span class="time">4 mins ago</span>
 												</div>
 											</div>
 										</li>
 										<li>
 											<div class="activity-user">
-												<a href="profile.html" class="avatar" title="Jeffery Lalor" data-toggle="tooltip" style="background-color: #ff6d00">L</a>
+												<a href="/profile" class="avatar" title="Jeffery Lalor" data-toggle="tooltip" style="background-color: #ff6d00">L</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Jeffery Lalor</a> added <a href="profile.html" class="name">Loren Gatlin</a> and <a href="profile.html" class="name">Tarah Shropshire</a> to project <a href="#">Patient appointment booking</a>
+													<a href="/profile" class="name">Jeffery Lalor</a> added <a href="/profile" class="name">Loren Gatlin</a> and <a href="/profile" class="name">Tarah Shropshire</a> to project <a href="#">Patient appointment booking</a>
 													<span class="time">6 mins ago</span>
 												</div>
 											</div>
 										</li>
 										<li>
 											<div class="activity-user">
-												<a href="profile.html" title="Catherine Manseau" data-toggle="tooltip" class="avatar">
-													<img alt="Catherine Manseau" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+												<a href="/profile" title="Catherine Manseau" data-toggle="tooltip" class="avatar">
+													<img alt="Catherine Manseau" src="static/img/user.jpg" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Catherine Manseau</a> completed task <a href="#">Appointment booking with payment gateway</a>
+													<a href="/profile" class="name">Catherine Manseau</a> completed task <a href="#">Appointment booking with payment gateway</a>
 													<span class="time">12 mins ago</span>
 												</div>
 											</div>
@@ -229,38 +222,38 @@
 										<li>
 											<div class="activity-user">
 												<a href="#" title="Bernardo Galaviz" data-toggle="tooltip" class="avatar">
-													<img alt="Bernardo Galaviz" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+													<img alt="Bernardo Galaviz" src="static/img/user.jpg" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Bernardo Galaviz</a> changed the task name <a href="#">Doctor available module</a>
+													<a href="/profile" class="name">Bernardo Galaviz</a> changed the task name <a href="#">Doctor available module</a>
 													<span class="time">1 day ago</span>
 												</div>
 											</div>
 										</li>
 										<li>
 											<div class="activity-user">
-												<a href="profile.html" title="Mike Litorus" data-toggle="tooltip" class="avatar">
-													<img alt="Mike Litorus" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+												<a href="/profile" title="Mike Litorus" data-toggle="tooltip" class="avatar">
+													<img alt="Mike Litorus" src="static/img/user.jpg" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Mike Litorus</a> added new task <a href="#">Patient and Doctor video conferencing</a>
+													<a href="/profile" class="name">Mike Litorus</a> added new task <a href="#">Patient and Doctor video conferencing</a>
 													<span class="time">2 days ago</span>
 												</div>
 											</div>
 										</li>
 										<li>
 											<div class="activity-user">
-												<a href="profile.html" title="Jeffery Lalor" data-toggle="tooltip" class="avatar">
-													<img alt="Jeffery Lalor" src="{{ url_for('static', filename='img/user.jpg') }}" class="img-responsive img-circle">
+												<a href="/profile" title="Jeffery Lalor" data-toggle="tooltip" class="avatar">
+													<img alt="Jeffery Lalor" src="static/img/user.jpg" class="img-responsive img-circle">
 												</a>
 											</div>
 											<div class="activity-content">
 												<div class="timeline-content">
-													<a href="profile.html" class="name">Jeffery Lalor</a> added <a href="profile.html" class="name">Jeffrey Warden</a> and <a href="profile.html" class="name">Bernardo Galaviz</a> to the task of <a href="#">Private chat module</a>
+													<a href="/profile" class="name">Jeffery Lalor</a> added <a href="/profile" class="name">Jeffrey Warden</a> and <a href="/profile" class="name">Bernardo Galaviz</a> to the task of <a href="#">Private chat module</a>
 													<span class="time">7 days ago</span>
 												</div>
 											</div>
@@ -271,215 +264,7 @@
 						</div>
 					</div>
                 </div>
-				<div class="notification-box">
-					<div class="msg-sidebar notifications msg-noti">
-						<div class="topnav-dropdown-header">
-							<span>Messages</span>
-						</div>
-						<div class="drop-scroll msg-list-scroll">
-							<ul class="list-box">
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">R</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Richard Miles </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item new-message">
-											<div class="list-left">
-												<span class="avatar">J</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">John Doe</span>
-												<span class="message-time">1 Aug</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">T</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Tarah Shropshire </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">M</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Mike Litorus</span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">C</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Catherine Manseau </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">D</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Domenic Houston </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">B</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Buster Wigton </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">R</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Rolland Webber </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">C</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author"> Claire Mapes </span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">M</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Melita Faucher</span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">J</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Jeffery Lalor</span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">L</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Loren Gatlin</span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="chat.html">
-										<div class="list-item">
-											<div class="list-left">
-												<span class="avatar">T</span>
-											</div>
-											<div class="list-body">
-												<span class="message-author">Tarah Shropshire</span>
-												<span class="message-time">12:28 AM</span>
-												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-											</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="topnav-dropdown-footer">
-							<a href="chat.html">See all messages</a>
-						</div>
-					</div>
-				</div>
+				
             </div>
         </div>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
