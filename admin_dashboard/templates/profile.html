@@ -167,6 +167,9 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- This web page content starts here -->
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -178,46 +181,49 @@
 							<a href="/editprofile" class="btn btn-primary rounded"><i class="fa fa-plus"></i> Edit Profile</a>
 						</div>
 					</div>
+					{% for info in profiledetails %}
 					<div class="card-box">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="profile-view">
 									<div class="profile-img-wrap">
 										<div class="profile-img">
-											<a href="#"><img class="avatar" src="static/img/user.jpg" alt=""></a>
+											<!-- <a href="#"><img class="avatar" src="static/img/user.jpg" alt=""></a> -->
+											<img class="avatar" src="data:image/jpg;base64,{{encoded_image}}" />
 										</div>
 									</div>
 									<div class="profile-basic">
 										<div class="row">
 											<div class="col-md-5">
 												<div class="profile-info-left">
-													<h3 class="user-name m-t-0 m-b-0">John Doe</h3>
-													<small class="text-muted">Web Designer</small>
-													<div class="staff-id">Employee ID : FT-0001</div>
-													<div class="staff-msg"><a href="/chat" class="btn btn-primary">Send Message</a></div>
+													<h3 class="user-name m-t-0 m-b-0">{{info[2]}} {{info[3]}}</h3>
+													<!-- <small class="text-muted">Web Designer</small> -->
+													<div class="staff-id">Parent ID : FT-000{{info[0]}}</div>
+													<!-- <div class="staff-msg"><a href="/chat" class="btn btn-primary">Send Message</a></div> -->
+													<div></div>
 												</div>
 											</div>
 											<div class="col-md-7">
 												<ul class="personal-info">
 													<li>
 														<span class="title">Phone:</span>
-														<span class="text"><a href="#">9876543210</a></span>
+														<span class="text">{{info[10]}}</span>
 													</li>
 													<li>
 														<span class="title">Email:</span>
-														<span class="text"><a href="#">johndoe@example.com</a></span>
+														<span class="text">{{info[11]}}</span>
 													</li>
 													<li>
 														<span class="title">Birthday:</span>
-														<span class="text">24th July</span>
+														<span class="text">{{info[4]|strptime('%d/%m/%Y')}}</span>
 													</li>
 													<li>
 														<span class="title">Address:</span>
-														<span class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</span>
+														<span class="text">{{info[6]}}</span>
 													</li>
 													<li>
 														<span class="title">Gender:</span>
-														<span class="text">Male</span>
+														<span class="text">{{info[5]}}</span>
 													</li>
 												</ul>
 											</div>
@@ -255,13 +261,13 @@
 											</div>
 											<div class="experience-content">
 												<div class="timeline-content">
-													<a href="#/" class="name">International College of Arts and Science (UG)</a>
-													<div>Bsc Computer Science</div>
-													<span class="time">2000 - 2003</span>
+													<a class="name">{{info[12]}}</a>
+													<div>{{info[13]}}</div>
+													<span class="time">{{info[14]|strptime('%Y')}} - {{info[15]|strptime('%Y')}}</span>
 												</div>
 											</div>
 										</li>
-										<li>
+										<!-- <li>
 											<div class="experience-user">
 												<div class="before-circle"></div>
 											</div>
@@ -272,12 +278,12 @@
 													<span class="time">2000 - 2003</span>
 												</div>
 											</div>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 							</div>
 							<div class="card-box m-b-0">
-								<h3 class="card-title">Experience</h3>
+								<h3 class="card-title">Achievements</h3>
 								<div class="experience-box">
 									<ul class="experience-list">
 										<li>
@@ -316,6 +322,7 @@
 									</ul>
 								</div>
 							</div>
+							{% endfor %}
 						</div>
 					</div>
                 </div>
