@@ -187,16 +187,11 @@
 						</div>
 					</div>
 					<div class="row filter-row">
-						<!-- <div class="col-sm-3 col-md-2 col-xs-6">  
-							<div class="form-group form-focus">
-								<label class="control-label">Employee Name</label>
-								<input type="text" class="form-control floating" />
-							</div>
-						</div> -->
+					<form method="post" action="/tickets">
 						<div class="col-sm-3 col-md-2 col-xs-6"> 
 							<div class="form-group form-focus select-focus">
 								<label class="control-label">Status</label>
-								<select class="select floating"> 
+								<select class="select floating" name="status"> 
 									<option value=""> -- Select -- </option>
 									<option value="0"> Pending </option>
 									<option value="1"> Approved </option>
@@ -204,32 +199,22 @@
 								</select>
 							</div>
 						</div>
-						<!-- <div class="col-sm-3 col-md-2 col-xs-6"> 
-							<div class="form-group form-focus select-focus">
-								<label class="control-label">Priority</label>
-								<select class="select floating"> 
-									<option value=""> -- Select -- </option>
-									<option value="0"> High </option>
-									<option value="1"> Low </option>
-									<option value="2"> Medium </option>
-								</select>
-							</div>
-						</div> -->
 						<div class="col-sm-3 col-md-2 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">From</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="fromm" id="date_from"></div>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-2 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">To</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="to"></div>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-2 col-xs-6">  
-							<a href="#" class="btn btn-success btn-block"> Search </a>  
-						</div>     
+							<button class="btn btn-success btn-block" type="submit"> Search </button>  
+						</div>  
+					</form>   
                     </div>
 					<div class="row">
 						<div class="col-md-12">
@@ -360,6 +345,7 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+
     </body>
 
 <!-- Mirrored from dreamguys.co.in/smarthr/blue/tickets.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 07:16:39 GMT -->

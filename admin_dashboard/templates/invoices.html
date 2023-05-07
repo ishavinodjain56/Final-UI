@@ -18,6 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/line-awesome.min.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dataTables.bootstrap.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/select2.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
@@ -187,16 +188,17 @@
 						</div>
 					</div>
 					<div class="row filter-row">
+					<form method="post" action="/subscription">
 						<div class="col-sm-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">From</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="fromm" id="date_from"></div>
 							</div>
 						</div>
 						<div class="col-sm-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">To</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="to"></div>
 							</div>
 						</div>
 						<div class="col-sm-3 col-xs-6"> 
@@ -211,8 +213,9 @@
 							</div>
 						</div>
 						<div class="col-sm-3 col-xs-6">  
-							<a href="#" class="btn btn-success btn-block"> Search </a>  
-						</div>     
+							<button class="btn btn-success btn-block" type="submit"> Search </a>  
+						</div>   
+					</form>  
                     </div>
 					
 					<div class="row">
@@ -224,38 +227,28 @@
 											<!-- <th class="text-center">#</th> -->
 											<th class="text-center">Invoice Number</th>
 											<th class="text-center">Plan</th>
-											<th class="text-center">Created Date</th>
-											<th class="text-center">Due Date</th>
+											<th class="text-center">Start Date</th>
+											<th class="text-center">Last Date</th>
 											<th class="text-center">Amount</th>
 											<th class="text-center">Status</th>
 											<!-- <th class="text-right">Invoice</th> -->
 										</tr>
 									</thead>
 									<tbody>
+										{% for sub in subdetails %}
 										<tr>
 											<!-- <td>1</td> -->
-											<td><a>#INV-0001</a></td>
-											<td>Global Technologies</td>
-											<td>1 Sep 2017</td>
-											<td>7 Sep 2017</td>
-											<td>$2099</td>
-											<td><span class="label label-success-border">Paid</span></td>
+											<td><a>#INV-000{{sub[0]}}</a></td>
+											<td>{{sub[2]}}</td>
+											<td>{{sub[3]|strptime('%d %b %Y')}}</td>
+											<td>{{sub[4]|strptime('%d %b %Y')}}</td>
+											<td>{{sub[5]}}</td>
+											<td><span class="label label-success-border">{{sub[6]}}</span></td>
 											<!-- <td class="text-right">
 												<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i>View</a></li>
 											</td> -->
 										</tr>
-										<tr>
-											<!-- <td>2</td> -->
-											<td><a>#INV-0002</a></td>
-											<td>Delta Infotech</td>
-											<td>1 Sep 2017</td>
-											<td>7 Sep 2017</td>
-											<td>$2099</td>
-											<td><span class="label label-info-border">Cancelled</span></td>
-											<!-- <td class="text-right">
-												<li><a href="invoice-view.html"><i class="fa fa-eye m-r-5"></i>View</a></li>
-											</td> -->
-										</tr>
+										{% endfor %}
 									</tbody>
 								</table>
 							</div>
@@ -282,6 +275,8 @@
 												<div class="card-header" id="plan">
 													Basic Plan
 												</div>
+												<input value="Basic Plan" name="plan" style="display: none;">
+												<input value="$9.99/month" name="amount" style="display: none;">
 												<div class="card-body">
 													<h5 class="card-title" id="amount">$9.99/month</h5>
 													<ul class="list-group list-group-flush">
@@ -299,9 +294,12 @@
 
 										<div class="col-md-3">
 											<div class="card">
+												<form method="post" action="/addsubscription">
 												<div class="card-header">
 													Premium Plan
 												</div>
+												<input value="Premium Plan" name="plan" style="display: none;">
+												<input value="$14.99/month" name="amount" style="display: none;">
 												<div class="card-body">
 													<h5 class="card-title">$14.99/month</h5>
 													<ul class="list-group list-group-flush">
@@ -313,14 +311,18 @@
 												<div class="card-footer">
 													<button class="btn btn-block btn-subscribe">Subscribe Now</button>
 												</div>
+											</form>
 											</div>
 										</div>
 
 										<div class="col-md-3">
 											<div class="card">
+												<form method="post" action="/addsubscription">
 												<div class="card-header">
 													Premium Plan
 												</div>
+												<input value="Premium Plan" name="plan" style="display: none;">
+												<input value="$19.99 3-month" name="amount" style="display: none;">
 												<div class="card-body">
 													<h5 class="card-title">$19.99 3-month</h5>
 													<ul class="list-group list-group-flush">
@@ -332,6 +334,7 @@
 												<div class="card-footer">
 													<button class="btn btn-block btn-subscribe">Subscribe Now</button>
 												</div>
+											</form>
 											</div>
 										</div>
 									</div>
@@ -380,6 +383,8 @@
 		<script type="text/javascript" src="assets/js/app.js"></script> -->
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/dataTables.bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/moment.min.js') }}"></script>

@@ -8,6 +8,15 @@
         <link rel="shortcut icon" type="image/x-icon" href="static/img/logo.png">
         <title>Events</title>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css">
+  		<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js"></script> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  		
+		
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
@@ -18,7 +27,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/line-awesome.min.css') }}" />
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullcalendar.min.css') }}" />
+		<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullcalendar.min.css') }}" /> -->
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/select2.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
@@ -195,8 +204,10 @@
 									</div>
 								</div>
 							</div>
+							
+
 							<!-- BEGIN MODAL -->
-							<div class="modal custom-modal fade none-border" id="event-modal">
+							<!-- <div class="modal custom-modal fade none-border" id="event-modal">
 								<div class="modal-dialog">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<div class="modal-content modal-md">
@@ -211,22 +222,22 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- Modal Add Category -->
-							<div class="modal fade none-border" id="add-category">
+							<!-- <div class="modal fade none-border" id="add-category">
 								<div class="modal-dialog">
 									<div class="modal-content">
-										<div class="modal-header">
+										 <div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 											<h4 class="modal-title">Add a category</h4>
 										</div>
 										<div class="modal-body p-20">
 											<form>
 												<div class="row">
-													<div class="col-md-6">
+													 <div class="col-md-6">
 														<label class="control-label">Category Name</label>
 														<input class="form-control" placeholder="Enter name" type="text" name="category-name"/>
-													</div>
+													</div> 
 													<div class="col-md-6">
 														<label class="control-label">Choose Category Color</label>
 														<select class="form-control" data-placeholder="Choose a color..." name="category-color">
@@ -251,7 +262,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- END MODAL -->
 						</div>
 					</div>
@@ -266,25 +277,158 @@
 							<h4 class="modal-title">Add Event</h4>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form method="post" action="/createevent">
 								<div class="form-group">
 									<label>Event Name <span class="text-danger">*</span></label>
-									<input class="form-control" required="" type="text">
+									<input class="form-control" required="" type="text" name="ename">
 								</div>
 								<div class="form-group">
 									<label>Event Date <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="edate"></div>
 								</div>
 								<div class="m-t-20 text-center">
-									<button class="btn btn-primary">Create Event</button>
+									<button class="btn btn-primary" type="submit">Create Event</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			<!-- <script>
+				let calendarE1 = document.getElementById('calendar');
+	
+				let calendar = new FullCalendar.Calendar(calendarE1,
+				{
+					events : [
+						{% for event in event_list %}
+						{
+						title : '{{event.ename}}',
+						start : '{{event.date}}',
+						ID : '{{event.id}}',
+						},
+						
+						{% endfor %}
+					],
+					
+					
+				});
+
+				calendar.render();
+
+			</script> -->
+
+			<script>
+				$(document).ready(function() {
+					var calendar = $('#calendar').fullCalendar({
+						editable:true,
+						header:{
+						left:'prev,next today',
+						center:'title',
+						right:'month,agendaWeek,agendaDay'
+						},
+						events: [
+						{% for event in event_list %}
+						{
+						title : '{{event.ename}}',
+						start : '{{event.date}}',
+						ID : '{{event.id}}',
+						},
+						
+						{% endfor %}
+						],
+						selectable:true,
+						selectHelper:true,
+						// select: function(start, end, allDay)
+						// {
+						// var title = prompt("Enter Event Title");
+						// if(title)
+						// {
+						// var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+						// var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+						// $.ajax({
+						// url:"/insert",
+						// type:"POST",
+						// data:{title:title, start:start, end:end},
+						// success:function(data)
+						// {
+						// 	//alert(data)
+						// 	alert("Added Successfully");
+						// 	window.location.replace("/");
+						// }
+						// })
+						// }
+						// },
+						// editable:true,
+						// eventResize:function(event)
+						// {
+						// var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+						// var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+						// var title = event.title;
+						// var id = event.id;
+						// $.ajax({
+						// url:"/update",
+						// type:"POST",
+						// data:{title:title, start:start, end:end, id:id},
+						// success:function(){
+						// calendar.fullCalendar('refetchEvents');
+						// alert('Event Update');
+						// }
+						// })
+						// },
+						
+						// eventDrop:function(event)
+						// {
+						// var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+						// var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+						// var title = event.title;
+						// var id = event.id;
+						// $.ajax({
+						// url:"/update",
+						// type:"POST",
+						// data:{title:title, start:start, end:end, id:id},
+						// success:function()
+						// {
+						// calendar.fullCalendar('refetchEvents');
+						// alert("Event Updated");
+						// }
+						// });
+						// },
+					
+						eventClick:function(event)
+						{
+						if(confirm("Are you sure you want to remove it?"))
+						{
+						var id = event.ID;
+						console.log(id)
+						$.ajax({
+						url:"/ajax_delete",
+						type:"POST",
+						data:{id:id},
+						success:function()
+						{
+							calendar.fullCalendar('refetchEvents');
+							location.reload(true);
+							// alert("Event Removed");
+						}
+						})
+						}
+						},
+					
+					});
+					});
+    
+			</script>
+			
         </div>
+		<style>
+			.fc-event-title-container{
+				cursor: pointer;
+			}
+		</style>
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
+		
+
         <!-- <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.slimscroll.js"></script>
@@ -295,14 +439,14 @@
         <script type="text/javascript" src="assets/js/jquery.fullcalendar.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap-datetimepicker.min.js"></script>
 		<script type="text/javascript" src="assets/js/app.js"></script> -->
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+		
 		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.html') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/fullcalendar.min.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fullcalendar.js') }}"></script>
+		<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.html') }}"></script> -->
+		<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/fullcalendar.min.js') }}"></script> -->
+		<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fullcalendar.js') }}"></script> -->
 		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
     </body>

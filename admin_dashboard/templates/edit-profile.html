@@ -181,11 +181,14 @@
 							<h4 class="page-title">Edit Profile</h4>
 						</div>
 					</div>
+					
 					<form method="post" action="/addprofileinfo" enctype="multipart/form-data">
+					{% for info in profiledetails %}
 						<div class="card-box">
 							<h3 class="card-title">Basic Informations</h3>
 							<div class="row">
 								<div class="col-md-12">
+									
 									<div class="profile-img-wrap">
 										<img class="inline-block" src="static/img/user.jpg" alt="user">
 										<div class="fileupload btn btn-default" id="image-container">
@@ -199,28 +202,28 @@
 											<div class="col-md-6">
 												<div class="form-group form-focus">
 													<label class="control-label">First Name</label>
-													<input type="text" class="form-control floating" name="FN" />
+													<input type="text" class="form-control floating" name="FN" value="{{ info[2] }}" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group form-focus">
 													<label class="control-label">Last Name</label>
-													<input type="text" class="form-control floating" name="LN" />
+													<input type="text" class="form-control floating" name="LN" value="{{info[3]}}" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group form-focus">
 													<label class="control-label">Birth Date</label>
-													<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="BD"></div>
+													<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="BD" required value="{{info[4]|strptime('%d/%m/%Y')}}"></div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group form-focus select-focus">
-													<label class="control-label">Gendar</label>
+													<label class="control-label">Gender</label>
 													<select class="select form-control floating" name="gender">
-														<option value="">Select Gendar</option>
-														<option value="Male">Male</option>
-														<option value="Female">Female</option>
+														<option value="">Select Gender</option>
+														<option value="Male" {% if info[5] == 'Male' %}selected{% endif %}>Male</option>
+														<option value="Female" {% if info[5] == 'Female' %}selected{% endif %}>Female</option>
 													</select>
 												</div>
 											</div>
@@ -235,37 +238,37 @@
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Address</label>
-										<input type="text" class="form-control floating" name="address" />
+										<input type="text" class="form-control floating" name="address" value="{{info[6]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Country</label>
-										<input type="text" class="form-control floating" name="country" />
+										<input type="text" class="form-control floating" name="country" value="{{info[7]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">State</label>
-										<input type="text" class="form-control floating" name="state" />
+										<input type="text" class="form-control floating" name="state" value="{{info[8]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Pin Code</label>
-										<input type="number" class="form-control floating" name="pin" />
+										<input type="number" class="form-control floating" name="pin" value="{{info[9]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Phone Number</label>
-										<input type="tel" class="form-control floating" pattern="[0-9]{10}" name="mobile" />
+										<input type="tel" class="form-control floating" pattern="[0-9]{10}" name="mobile" value="{{info[10]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Email ID</label>
-										<input type="email" class="form-control floating" name="email" />
+										<input type="email" class="form-control floating" name="email" id="email" required value="{{ eprofile }}" readonly/>
 									</div>
 								</div>
 							</div>
@@ -276,7 +279,7 @@
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Institution</label>
-										<input type="text" class="form-control floating" name="institution" />
+										<input type="text" class="form-control floating" name="institution" value="{{info[12]}}" />
 									</div>
 								</div>
 								<!-- <div class="col-md-6">
@@ -288,33 +291,33 @@
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Degree</label>
-										<input type="text" class="form-control floating" name="degree" />
+										<input type="text" class="form-control floating" name="degree" value="{{info[13]}}" />
 									</div>
 								</div>
 
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Starting Date</label>
-										<input type="text" class="form-control floating datetimepicker" name="SD" />
+										<input type="text" class="form-control floating datetimepicker" name="SD" required value="{{info[14]|strptime('%d/%m/%Y')}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Complete Date</label>
-										<input type="text" class="form-control floating datetimepicker" name="CD" />
+										<input type="text" class="form-control floating datetimepicker" name="CD" required value="{{info[15]|strptime('%d/%m/%Y')}}" />
 									</div>
 								</div>
 								
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Grade</label>
-										<input type="text" class="form-control floating" name="grade" />
+										<input type="text" class="form-control floating" name="grade" value="{{info[16]}}" />
 									</div>
 								</div>
 							</div>
-							<div class="add-more">
+							<!-- <div class="add-more">
 								<a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> Add More Institute</a>
-							</div>
+							</div> -->
 						</div>
 						<div class="card-box">
 							<h3 class="card-title">Interests</h3>
@@ -328,13 +331,13 @@
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Skills</label>
-										<input type="text" class="form-control floating" name="skills" />
+										<input type="text" class="form-control floating" name="skills" value="{{info[17]}}" />
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">Achievements</label>
-										<input type="text" class="form-control floating" name="achievements" />
+										<input type="text" class="form-control floating" name="achievements" value="{{info[18]}}" />
 									</div>
 								</div>
 								<!-- <div class="col-md-6">
@@ -357,6 +360,7 @@
 						<div class="text-center m-t-20">
 							<button class="btn btn-primary btn-lg" type="submit">Save &amp; update</button>
 						</div>
+						{% endfor %}
 					</form>
 				</div>
 				
@@ -364,6 +368,7 @@
 		</div>
 
 		<div class="sidebar-overlay" data-reff="#sidebar"></div>
+		
         <!-- <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.slimscroll.js"></script>

@@ -38,32 +38,46 @@ def browsingSitesPage():
 def GenresPage():
     return render_template('projects.html')
 
-@app.route('/subscription')
+@app.route('/subscription',methods=['GET','POST'])
 def subscriptionPage():
-    # cur = mysql.connection.cursor()
-    # getsubscription = cur.execute("SELECT * FROM subscription")
+    if "curr_user" in session:
+        eprofile = session['curr_user']
+        # cur.execute("SELECT * FROM subscription WHERE DATE(datetime) BETWEEN %s AND %s", (fromm, to))
+    from_date = ''
+    to_date = ''
+    if request.method == 'POST':
+        from_date = request.form['fromm']
+        to_date = request.form['to']
+    cur = mysql.connection.cursor()
+    print("hello fdate",from_date)
+    if (from_date == '' or to_date == ''):
+        cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' ")
+    else:
+        fromm = datetime.strptime(from_date,'%d/%m/%Y')
+        to = datetime.strptime(to_date,'%d/%m/%Y')
+        print("Hello in")
+        cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' AND DATE(StartDate) BETWEEN %s AND %s", (fromm, to))
+        
+    subdetails = cur.fetchall()
+    cur.close()
+    return render_template('invoices.html',subdetails=subdetails)
 
-    # if getsubscription>0:
-    #     subscriptiondetails = cur.fetchall()
-    #     for row in subscriptiondetails:
-    #         ed = cur.execute("SELECT DATE_ADD(2017-06-15', INTERVAL 10 DAY)")
-    #         print(ed)
-
-    return render_template('invoices.html')
 
 @app.route('/addsubscription',methods=['GET','POST'])
 def addsubscription():
+    if "curr_user" in session:
+        eprofile = session['curr_user']
     if request.method == 'POST':
-        with open("templates/invoices.html") as file:
-            html = file.read()
-        soup = bs(html, "html.parser")
-        plan = soup.find('div', id = "plan")
-        plan = plan.string.strip()
-        amount = soup.find('h5',id="amount").string
+        planname = request.form['plan']
+        planamount = request.form['amount']
 
         cur = mysql.connection.cursor()
-        cur.execute("ALTER TABLE subscription AUTO_INCREMENT=1")
-        cur.execute("INSERT INTO subscription (Plan,Amount) VALUES (%s,%s)", (plan,amount))
+        if planamount == '$19.99 3-month':
+            cur.execute("ALTER TABLE subscription AUTO_INCREMENT=1")
+            cur.execute("INSERT INTO subscription VALUES (NULL,%s,%s,NOW(),DATE_ADD(NOW(), INTERVAL 3 MONTH),%s,%s)", (eprofile,planname,planamount,'Paid'))
+        else:
+            cur.execute("ALTER TABLE subscription AUTO_INCREMENT=1")
+            cur.execute("INSERT INTO subscription VALUES (NULL,%s,%s,NOW(),DATE_ADD(NOW(), INTERVAL 1 MONTH),%s,%s)", (eprofile,planname,planamount,'Paid'))
 
         mysql.connection.commit()
 
@@ -74,15 +88,26 @@ def addsubscription():
 def screentimePage():
     return render_template('worksheet.html')
 
-@app.route('/tickets')
+
+@app.route('/tickets', methods=['GET', 'POST'])
 def complaintPage():
+    from_date = ''
+    to_date = ''
+    if request.method == 'POST':
+        from_date = request.form['fromm']
+        to_date = request.form['to']
     cur = mysql.connection.cursor()
-    gettickets = cur.execute("SELECT * FROM tickets")
-
-    if gettickets>0:
-        ticketdetails = cur.fetchall()
-
+    print("hello",from_date)
+    if (from_date == '' or to_date == ''):
+        cur.execute("SELECT * FROM tickets")
+    else:
+        fromm = datetime.strptime(from_date,'%d/%m/%Y')
+        to = datetime.strptime(to_date,'%d/%m/%Y')
+        cur.execute("SELECT * FROM tickets WHERE DATE(datetime) BETWEEN %s AND %s", (fromm, to))
+    ticketdetails = cur.fetchall()
+    cur.close()
     return render_template('tickets.html',ticketdetails=ticketdetails)
+
 
 @app.route('/addticket',methods=['GET','POST'])
 def addticket():
@@ -100,10 +125,55 @@ def addticket():
         cur.close()
     return redirect('/tickets')
 
-
 @app.route('/events')
 def eventsPage():
-    return render_template('events.html')
+    if "curr_user" in session:
+        eprofile = session['curr_user']
+        cur = mysql.connection.cursor()
+        getprofile = cur.execute("SELECT * FROM events where email='"+eprofile+"' ")
+        if getprofile>0:
+            profiledetails = cur.fetchall()
+        else:
+            return render_template('events.html')
+
+        event_list=[]
+        for event in profiledetails:
+            event_dict = {'id': event[0], 'ename': event[2], 'date': event[3].strftime('%Y-%m-%d')}
+            event_list.append(event_dict)
+    return render_template('events.html', event_list = event_list)
+
+@app.route('/createevent',methods=['GET','POST'])
+def createevent():
+    if request.method == 'POST':
+        if "curr_user" in session:
+            eprofile = session['curr_user']
+        evename = request.form['ename']
+        evedate = request.form['edate']
+        evedate = datetime.strptime(evedate,'%d/%m/%Y')
+        print(evedate)
+        # file = request.form['files']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("ALTER TABLE tickets AUTO_INCREMENT=1")
+        cur.execute("INSERT INTO events VALUES (NULL,%s,%s,%s)", (eprofile,evename,evedate))
+
+        mysql.connection.commit()
+
+        cur.close()
+    return redirect('/events')
+
+@app.route('/ajax_delete', methods=['POST'])
+def ajax_delete():
+    cur = mysql.connection.cursor()
+    if request.method == 'POST':
+        print("form",request.form)
+        getid = request.form['id']
+        print(getid)
+        cur.execute('DELETE FROM events WHERE ID = {0}'.format(getid))
+        mysql.connection.commit()       
+        cur.close()
+        msg = 'Record deleted successfully'  
+    return jsonify(msg)
 
 @app.route('/chat')
 def chatbotPage():
@@ -117,25 +187,36 @@ def notificationsPage():
 def profilePage():
     if "curr_user" in session:
         eprofile = session['curr_user']
+        print(eprofile)
         cur = mysql.connection.cursor()
         getprofile = cur.execute("SELECT * FROM profile_info where email='"+eprofile+"' ")
         if getprofile>0:
             profiledetails = cur.fetchall()
-            print(profiledetails[0][1])
+            print("hello",profiledetails[0][1])
             encoded_image = base64.b64encode(profiledetails[0][1]).decode('utf-8')
             print(encoded_image)
             return render_template('profile.html',profiledetails=profiledetails,encoded_image=encoded_image)
     
-    return redirect('/login')
+    return redirect('/editprofile')
 
 @app.route('/editprofile')
 def editprofilePage():
-    return render_template('edit-profile.html')
+    eprofile = session['curr_user']
+    cur = mysql.connection.cursor()
+    count = cur.execute("SELECT * FROM profile_info where email='"+eprofile+"' ")
+    if count != 0:
+        profiledetails = cur.fetchall()
+        encoded_image = base64.b64encode(profiledetails[0][1]).decode('utf-8')
+        return render_template('edit-profile.html',profiledetails=profiledetails,eprofile=eprofile)
+    else:
+        return render_template('edit-profile.html',profiledetails='N',eprofile=eprofile)
+    
 
 @app.route('/addprofileinfo',methods=['GET','POST'])
 def addprofile():
     if request.method == 'POST':
         pimg = request.files['img']
+        pimg = pimg.read()
         firstname = request.form['FN']
         lastname = request.form['LN']
         bd = request.form['BD']
@@ -160,8 +241,30 @@ def addprofile():
         # file = request.form['files']
         
         cur = mysql.connection.cursor()
-        # cur.execute("ALTER TABLE tickets AUTO_INCREMENT=1")
-        cur.execute("INSERT INTO profile_info VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (pimg,firstname,lastname,birthdate,gender,address,country,state,pin,mobile,email,institution,degree,startingdate,endingdate,grade,skills,achievements))
+
+        count = cur.execute("SELECT email FROM profile_info where email='"+email+"' ")
+        if count != 0:
+            cur.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'profile_info' ")
+            column_names = cur.fetchall()
+            # Extract the column names from the list of tuples and store them in a separate list
+            column_list = [x[0] for x in column_names]
+            print("hello",column_list)
+            new_values = ['NULL',pimg,firstname,lastname,birthdate,gender,address,country,state,pin,mobile,email,institution,degree,startingdate,endingdate,grade,skills,achievements]
+
+            # Build the SET clause dynamically
+            set_clause = ', '.join([f'{col} = %s' for col in column_list])
+
+            # Build the SQL statement dynamically
+            sql = f"UPDATE {'profile_info'} SET {set_clause} WHERE email = %s"
+
+            # Define the ID of the row you want to update
+            oemail = email
+
+            # Execute the SQL statement with the new values and row ID
+            cur.execute(sql, new_values + [oemail])
+        else:
+            # cur.execute("ALTER TABLE tickets AUTO_INCREMENT=1")
+            cur.execute("INSERT INTO profile_info VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (pimg,firstname,lastname,birthdate,gender,address,country,state,pin,mobile,email,institution,degree,startingdate,endingdate,grade,skills,achievements))
 
         mysql.connection.commit()
 
@@ -194,6 +297,7 @@ def _jinja2_filter_datetime(date, fmt):
     # native = date.replace(tzinfo=None)
     format = fmt or '%b %d, %Y'
     return date.strftime(format)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
