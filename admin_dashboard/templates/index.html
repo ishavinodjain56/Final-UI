@@ -171,6 +171,9 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- This web page content starts here -->
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -178,8 +181,14 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-clock-fill"></i></span>
 								<div class="dash-widget-info">
-									<h3>1120</h3>
-									<span>Screen Time<br>[mins]</span>
+									<h3>
+									<script>
+										var timeInSeconds = {{timeline2[0][1]}};
+										var timeInHours = Math.round(timeInSeconds / 3600);
+										document.write(timeInHours);
+									</script>
+									</h3>
+									<span>Screen Time<br>[hours]</span>
 								</div>
 							</div>
 						</div>
@@ -187,7 +196,7 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-browser-chrome"></i></span>
 								<div class="dash-widget-info">
-									<h3>140</h3>
+									<h3>{{timeline2[0][0]}}</h3>
 									<span>WebPages<br>Visited</span>
 								</div>
 							</div>
@@ -230,7 +239,7 @@
 								<div class="col-md-6 text-center">
 									<div class="card-box">
 										<h3 class="card-title">Screen Time</h3>
-										<div id="area-charts"></div>
+										<div id="bar-charts2"></div>
 									</div>
 								</div>
 								<div class="col-md-6 text-center">
@@ -256,36 +265,19 @@
 													<th class="text-center">Event Id</th>
 													<th class="text-center">Event Name</th>
 													<th class="text-center">Due Date</th>
-													<th class="text-center">Status</th>
 												</tr>
 											</thead>
 											<tbody>
+											{% set count = 1 %}
+											{% for event in eventdetails %}
 												<tr>
-													<td>#Evnt-0001</td>
-													<td>Hazel Nutt</td>
-													<td>8 Aug 2017</td>
-													<td>
-														<span class="label label-warning-border">Partially Done</span>
-													</td>
+													<td>#Evnt-000{{count}}</td>
+													<td>{{event[2]}}</td>
+													<td>{{event[3]|strptime('%d %b %Y')}}</td>
 												</tr>
-
-												<tr>
-													<td>#Evnt-0002</td>
-													<td>Paige Turner</td>
-													<td>17 Sep 2017</td>
-													<td>
-														<span class="label label-success-border">Completed</span>
-													</td>
-												</tr>
-
-												<tr>
-													<td>#Evnt-0003</td>
-													<td>Ben Dover</td>
-													<td>30 Nov 2017</td>
-													<td>
-														<span class="label label-danger-border">Pending</span>
-													</td>
-												</tr>
+												{% set count = count+1 %}
+												<!-- {{count}} -->
+											{% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -307,21 +299,22 @@
 												<tr>
 													<th class="text-center">Invoice ID</th>
 													<th class="text-center">Name</th>
-													<th class="text-center">Payment Type</th>
+													<th class="text-center">Plan Type</th>
 													<th class="text-center">Paid Date</th>
 													<th class="text-center">Paid Amount</th>
 												</tr>
 											</thead>
 											<tbody>
+											{% for sub in plandetails %}
 												<tr>
 													<td>#INV-0004</td>
-													<td>Barry Cuda</td>
-													<td>Paypal</td>
-													<td>11 Jun 2017</td>
-													<td>$380</td>
+													<td>{{namedetails[0][0]}} {{namedetails[0][1]}}</td>
+													<td>{{sub[0]}}</td>
+													<td>{{sub[1]|strptime('%d %b %Y')}}</td>
+													<td>{{sub[2]}}</td>
 												</tr>
 
-												<tr>
+												<!-- <tr>
 													<td>#INV-0005</td>
 													<td>Tressa Wexler</td>
 													<td>Paypal</td>
@@ -334,7 +327,8 @@
 													<td>Paypal</td>
 													<td>28 Aug 2017</td>
 													<td>$60</td>
-												</tr>
+												</tr> -->
+												{% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -349,31 +343,24 @@
 						<div class="col-md-6">
 							<div class="panel panel-table">
 								<div class="panel-heading">
-									<h3 class="panel-title">Websites</h3>
+									<h3 class="panel-title">Top 5 Most Visited Domains</h3>
 								</div>
 								<div class="panel-body">
 									<div class="table-responsive">
 										<table class="table table-striped custom-table m-b-0">
 											<thead>
 												<tr>
-													<th class="col-md-3 text-center">Website Name</th>
-													<th class="col-md-3 text-center">Time spent</th>
-													
+													<th class="col-md-3 text-center">Domain Name</th>
+													<th class="col-md-3 text-center">Visit Count</th>
 												</tr>
 											</thead>
 											<tbody>
+												{% for web in webdetails %}
 												<tr style="height:57px">
-													<td>
-														<h2><a href="project-view.html">Food and Drinks</a></h2>
-													</td>
-													<td>
-														<div class="progress progress-xs progress-striped">
-															<div class="progress-bar bg-success" role="progressbar" data-toggle="tooltip" title="65%" style="width: 65%"></div>
-														</div>
-													</td>
-													
+													<td><h2><a href={{web[1]}}>{{web[4]}}</a></h2></td>
+													<td>{{web[3]}}</td>
 												</tr>
-												<tr style="height:57px">
+												<!-- <tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">School Guru</a></h2>
 														
@@ -420,7 +407,8 @@
 														</div>
 													</td>
 													
-												</tr>
+												</tr> -->
+												{% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -433,7 +421,7 @@
 						<div class="col-md-6">
 							<div class="panel panel-table">
 								<div class="panel-heading">
-									<h3 class="panel-title">Recent ScreenTime</h3>
+									<h3 class="panel-title">Top Busiest Days</h3>
 								</div>
 								<div class="panel-body">
 									<div class="table-responsive">
@@ -441,26 +429,22 @@
 											<thead>
 												<tr>
 													<th class="col-md-3 text-center">Date </th>
-													<th class="col-md-3 text-center">Time Spent</th>
-													
+													<th class="col-md-3 text-center">Time Spent(hours)</th>
 												</tr>
 											</thead>
 											<tbody>
+												{% for time in timeline %}
 												<tr style="height:57px">
+													<td>{{time[0]}}</td>
 													<td>
-														<h2><a href="project-view.html">28/02/2023</a></h2>
-														<small class="block text-ellipsis">
-															<span class="text-xs">15%</span> <span class="text-muted">more</span>
-														</small>
+														<script>
+															var timeInSeconds = {{time[1]}};
+															var timeInHours = Math.round(timeInSeconds / 3600);
+															document.write(timeInHours);
+													  	</script>
 													</td>
-													<td>
-														<div class="progress progress-xs progress-striped">
-															<div class="progress-bar bg-success" role="progressbar" data-toggle="tooltip" title="65%" style="width: 65%"></div>
-														</div>
-													</td>
-													
 												</tr>
-												<tr style="height:57px">
+												<!-- <tr style="height:57px">
 													<td>
 														<h2><a href="project-view.html">27/02/2023</a></h2>
 														<small class="block text-ellipsis">
@@ -516,13 +500,14 @@
 														</div>
 													</td>
 													
-												</tr>
+												</tr> -->
+												{% endfor %}
 											</tbody>
 										</table>
 									</div>
 								</div>
 								<div class="panel-footer">
-									<a href="/top_genres" class="text-primary">View all Days</a>
+									<a href="/screen_time" class="text-primary">View all Days</a>
 								</div>
 							</div>
 						</div>

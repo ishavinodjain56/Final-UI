@@ -186,22 +186,24 @@
 										</div> -->
 									</div>
 
-									<div class="row filter-row" style="display: flex; justify-content: flex-end;">
+									<div class="row filter-row">
+									<form method="post" action="/screen_time">
 										<div class="col-sm-3 col-md-2 col-xs-6">  
 											<div class="form-group form-focus">
-												<label class="control-label">From</label>
-												<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+												<label class="control-label">Date</label>
+												<div class="cal-icon"><input class="form-control floating datetimepicker" type="text" name="fromm"></div>
 											</div>
 										</div>
-										<div class="col-sm-3 col-md-2 col-xs-6">  
+										<!-- <div class="col-sm-3 col-md-2 col-xs-6">  
 											<div class="form-group form-focus">
 												<label class="control-label">To</label>
 												<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-sm-3 col-md-2 col-xs-6">  
-											<a href="#" class="btn btn-success btn-block"> Search </a>  
+											<button class="btn btn-success btn-block" type="submit"> Search </button>  
 										</div> 
+									</form>
 									</div> 
 
 									<div class="row">
@@ -212,58 +214,22 @@
 														<tr>
 															<th class="text-center" style="width: 100px">#</th>
 															<th class="text-center">Date</th>
-															<th class="text-center">Website visited</th>
-															<th class="text-center">Time spent(mins)</th>
+															<th class="text-center">Domain</th>
+															<th class="text-center">Time spent(secs)</th>
 															<!-- <th class="text-center">Hours</th>
 															<th class="text-center">Description</th>
 															<th class="text-right">Actions</th> -->
 														</tr>
 													</thead>
 													<tbody>
-											
+													{% for time in timedetail %}
 														<tr>
-															<td>
-																<h2>1</h2>
-															</td>
-															<td>5 Aug 2017</td>
-															<td>
-																<h2>Food and Drinks</h2>
-															</td>
-															<td class="text-center">20</td>
-															<!-- <td class="text-center">12</td>
-															<td class="col-md-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque.</td>
-															<td class="text-right">
-																<div class="dropdown">
-																	<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-																	<ul class="dropdown-menu pull-right">
-																		<li><a href="#" title="Edit" data-toggle="modal" data-target="#edit_todaywork"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-																		<li><a href="#" title="Delete" data-toggle="modal" data-target="#delete_workdetail"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-																	</ul>
-																</div>
-															</td> -->
+															<td><h2>{{time[0]}}</h2></td>
+															<td>{{time[2]}}</td>
+															<td><h2>{{time[1]}}</h2></td>
+															<td class="text-center">{{time[3]}}</td>
 														</tr>
-														<tr>
-															<td>
-																<h2>2</h2>
-															</td>
-															<td>5 Aug 2017</td>
-															<td>
-																<h2>School Guru</h2>
-															</td>
-															<td class="text-center">20</td>
-															<!-- <td class="text-center">12</td>
-															<td class="col-md-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque.</td>
-															<td class="text-right">
-																<div class="dropdown">
-																	<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-																	<ul class="dropdown-menu pull-right">
-																		<li><a href="#" title="Edit" data-toggle="modal" data-target="#edit_todaywork"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-																		<li><a href="#" title="Delete" data-toggle="modal" data-target="#delete_workdetail"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-																	</ul>
-																</div>
-															</td> -->
-														</tr>
-														<tr>
+														<!-- <tr>
 															<td>
 																<h2>3</h2>
 															</td>
@@ -271,7 +237,7 @@
 															<td>
 																<h2>Penabook</h2>
 															</td>
-															<td class="text-center">20</td>
+															<td class="text-center">20</td> -->
 															<!-- <td class="text-center">12</td>
 															<td class="col-md-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque.</td>
 															<td class="text-right">
@@ -283,7 +249,8 @@
 																	</ul>
 																</div>
 															</td> -->
-														</tr>
+														<!-- </tr> -->
+														{% endfor %}
 													</tbody>
 												</table>
 											</div>
