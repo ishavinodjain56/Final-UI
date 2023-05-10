@@ -144,6 +144,11 @@
 							<li> 
 								<a href="/browsing_sites"><i class="la la-users"></i> <span>Browsing Sites</span></a>
 							</li>
+
+							<li> 
+								<a href="/intrests"><i class="la la-heart-o"></i><span>Intrests</span></a>
+							</li>
+
 							<li> 
 								<a href="/top_genres"><i class="la la-rocket"></i> <span>Top Genres</span></a>
 							</li>
@@ -171,6 +176,7 @@
 					</div>
 				</div>
 			</div>
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -178,8 +184,8 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-clock-fill"></i></span>
 								<div class="dash-widget-info">
-									<h3>1120</h3>
-									<span>Screen Time<br>[mins]</span>
+									<h4><strong>1120<br>hrs</strong></h4>
+									<span>Time spent</span>
 								</div>
 							</div>
 						</div>
@@ -187,8 +193,8 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-browser-chrome"></i></span>
 								<div class="dash-widget-info">
-									<h3>140</h3>
-									<span>WebPages<br>Visited</span>
+									<h4><strong>140<br>sites</strong></h4>
+									<span>Sites Visited</span>
 								</div>
 							</div>
 						</div>
@@ -196,8 +202,10 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-clipboard-heart"></i></span>
 								<div class="dash-widget-info">
-									<h3>Sports</h3>
-									<span>Child's<br>Major Interest</span>
+									{% for info in top_intrest %}
+									<h4><b>{{info[0]}}</b></h4>
+									<span>Genre of Interest</span>
+									{% endfor %}
 								</div>
 							</div>
 						</div>
@@ -205,8 +213,8 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-clipboard-data"></i></span>
 								<div class="dash-widget-info">
-									<h3>Football</h3>
-									<span>Customised Recommendation</span>
+									<h4><strong>Tree<br>Recursive</strong></h4>
+									<span>Major Interest</span>
 								</div>
 							</div>
 						</div>
@@ -235,8 +243,8 @@
 								</div>
 								<div class="col-md-6 text-center">
 									<div class="card-box">
-										<h3 class="card-title">WEBPAGES VISTED</h3>
-										<div id="line-charts"></div>
+										<h3 class="card-title">Top Intrest Genres</h3>
+										<div id="barg-charts"></div>
 									</div>
 								</div>
 							</div>

@@ -28,15 +28,106 @@ def loginPage():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('index.html')
+    cur = mysql.connection.cursor()
+    top_intrest = cur.execute("SELECT category FROM genre_data ORDER BY count DESC LIMIT 1 ")
+    top_intrest = cur.fetchall()
+    cur.close()
+    return render_template('index.html',top_intrest=top_intrest)
 
-@app.route('/browsing_sites')
+@app.route('/bar_data')
+def bar_data():
+    cur = mysql.connection.cursor()
+    output = cur.execute("select Topic_5,Count_5 from lda_output")
+    data = cur.fetchall()
+    data_bar = [{'y':row[0],'a' : row[1]} for row in data]
+    print(data_bar)
+    return jsonify(data_bar)
+
+@app.route('/barg_data')
+def barg_data():
+    cur = mysql.connection.cursor()
+    output1 = cur.execute("select category,count from genre_data")
+    datag = cur.fetchall()
+    data_barg = [{'y':row[0],'a' : row[1]} for row in datag]
+    print(data_barg)
+    return jsonify(data_barg)
+
+@app.route('/browsing_sites', methods=['GET', 'POST'])
 def browsingSitesPage():
-    return render_template('clients.html')
+    from_date = request.form.get('from_date')
+    to_date = request.form.get('to_date')
+    search_term = request.form.get('search')
+
+    cur = mysql.connection.cursor()
+
+    if not from_date or not to_date:
+        cur.execute("SELECT URL, Title FROM browsing_sites")
+    else:
+        from_date = datetime.strptime(from_date, '%d/%m/%Y')
+        to_date = datetime.strptime(to_date, '%d/%m/%Y')
+        cur.execute("SELECT URL, Title FROM browsing_sites WHERE Timestamp BETWEEN %s AND %s", (from_date, to_date))
+
+    browsing_info = cur.fetchall()
+    
+    # Apply search filter
+    if search_term:
+        browsing_info = [row for row in browsing_info if search_term in row[0] or search_term in row[1]]
+
+    cur.close()
+    return render_template('clients.html', browsing_info=browsing_info)
+
+@app.route('/intrests')
+def intrestPage():
+    cur = mysql.connection.cursor()
+    interests_data = cur.execute("SELECT id, Topic_5,Count_5 FROM lda_output")
+    interests_info1 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_4,Count_4 FROM lda_output")
+    interests_info2 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_2,Count_2 FROM lda_output")
+    interests_info3 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_2,Count_2 FROM lda_output")
+    interests_info4 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_6,Count_6 FROM lda_output")
+    interests_info5 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_8,Count_8 FROM lda_output")
+    interests_info6 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_3,Count_3 FROM lda_output")
+    interests_info7 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_7,Count_7 FROM lda_output")
+    interests_info8 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_10,Count_10 FROM lda_output")
+    interests_info9 = cur.fetchall()
+
+    interests_data = cur.execute("SELECT id, Topic_1,Count_1 FROM lda_output")
+    interests_info10 = cur.fetchall()
+
+    cur.close()
+    return render_template('intrests.html', interests_info1 = interests_info1 ,
+                            interests_info2 = interests_info2 ,
+                            interests_info3 = interests_info3 ,
+                            interests_info4 = interests_info4 ,
+                            interests_info5 = interests_info5 ,
+                            interests_info6 = interests_info6 ,
+                            interests_info7 = interests_info7 ,
+                            interests_info8 = interests_info8 ,
+                            interests_info9 = interests_info9 ,
+                            interests_info10 = interests_info10) 
 
 @app.route('/top_genres')
 def GenresPage():
-    return render_template('projects.html')
+    cur = mysql.connection.cursor()
+    genres_info = cur.execute("SELECT category,cat_desc,count FROM genre_data")
+    genres_info = cur.fetchall()
+    cur.close()
+    return render_template('projects.html',genres_info = genres_info)
 
 @app.route('/subscription',methods=['GET','POST'])
 def subscriptionPage():
