@@ -186,13 +186,14 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-clock-fill"></i></span>
 								<div class="dash-widget-info">
-									<h3>
+									<h4><strong>
 									<script>
 										var timeInSeconds = {{timeline2[0][1]}};
 										var timeInHours = Math.round(timeInSeconds / 3600);
 										document.write(timeInHours);
 									</script>
-									</h3>
+									</strong>
+									</h4>
 									<span>Screen Time<br>[hours]</span>
 									<!-- <h4><strong>1120<br>hrs</strong></h4>
 									<span>Time spent</span> -->
@@ -203,7 +204,7 @@
 							<div class="dash-widget clearfix card-box">
 								<span class="dash-widget-icon"><i class="bi bi-browser-chrome"></i></span>
 								<div class="dash-widget-info">
-									<h4>{{timeline2[0][0]}}</h4>
+									<h4><strong>{{timeline2[0][0]}}<br>sites</strong></h4>
 									<span>Sites Visited</span>
 									<!-- <h4><strong>140<br>sites</strong></h4>
 									<span>Sites Visited</span> -->
@@ -282,7 +283,7 @@
 											{% set count = 1 %}
 											{% for event in eventdetails %}
 												<tr>
-													<td>#Evnt-000{{count}}</td>
+													<td>#Evnt-000{{event[0]}}</td>
 													<td>{{event[2]}}</td>
 													<td>{{event[3]|strptime('%d %b %Y')}}</td>
 												</tr>
@@ -318,11 +319,11 @@
 											<tbody>
 											{% for sub in plandetails %}
 												<tr>
-													<td>#INV-0004</td>
-													<td>{{namedetails[0][0]}} {{namedetails[0][1]}}</td>
 													<td>{{sub[0]}}</td>
-													<td>{{sub[1]|strptime('%d %b %Y')}}</td>
-													<td>{{sub[2]}}</td>
+													<td>{{namedetails[0][0]}} {{namedetails[0][1]}}</td>
+													<td>{{sub[1]}}</td>
+													<td>{{sub[2]|strptime('%d %b %Y')}}</td>
+													<td>{{sub[3]}}</td>
 												</tr>
 
 												<!-- <tr>
@@ -368,7 +369,7 @@
 											<tbody>
 												{% for web in webdetails %}
 												<tr style="height:57px">
-													<td><h2><a href={{web[1]}}>{{web[4]}}</a></h2></td>
+													<td><h2><a href={{web[1]}} target="_blank">{{web[4]}}</a></h2></td>
 													<td>{{web[3]}}</td>
 												</tr>
 												<!-- <tr style="height:57px">

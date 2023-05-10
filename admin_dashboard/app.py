@@ -40,7 +40,7 @@ def dashboard():
     namedetails=cur.fetchall()
     print(namedetails)
 
-    cur.execute("SELECT Plan, StartDate, Amount from subscription where email='"+eprofile+"'")
+    cur.execute("SELECT ID, Plan, StartDate, Amount from subscription where email='"+eprofile+"' LIMIT 3")
     plandetails=cur.fetchall()
     print(plandetails)
 
@@ -169,18 +169,27 @@ def subscriptionPage():
         # cur.execute("SELECT * FROM subscription WHERE DATE(datetime) BETWEEN %s AND %s", (fromm, to))
     from_date = ''
     to_date = ''
+    status=''
     if request.method == 'POST':
         from_date = request.form['fromm']
         to_date = request.form['to']
+        status = request.form['status']
     cur = mysql.connection.cursor()
     print("hello fdate",from_date)
+    
     if (from_date == '' or to_date == ''):
-        cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' ")
+        if (status!=''):
+            cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' AND status='"+status+"' ")
+        else:
+            cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' ")
     else:
-        fromm = datetime.strptime(from_date,'%d/%m/%Y')
-        to = datetime.strptime(to_date,'%d/%m/%Y')
-        print("Hello in")
-        cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' AND DATE(StartDate) BETWEEN %s AND %s", (fromm, to))
+        if (status!=''):
+            cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' AND status='"+status+"' ")
+        else:
+            fromm = datetime.strptime(from_date,'%d/%m/%Y')
+            to = datetime.strptime(to_date,'%d/%m/%Y')
+            print("Hello in")
+            cur.execute("SELECT * FROM subscription WHERE email='"+eprofile+"' AND DATE(StartDate) BETWEEN %s AND %s", (fromm, to))
         
     subdetails = cur.fetchall()
     cur.close()
