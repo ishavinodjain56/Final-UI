@@ -24,20 +24,23 @@ $(document).ready(function() {
 
 	// Bar Chart 1
 	
+	$.getJSON('/bar_data',function(data_bar){
 	Morris.Bar({
 		element: 'bar-charts',
-		data: [
-			{ y: 'Football', a: 80},
-			{ y: 'Chess', a: 65 },
-			{ y: 'Watermelon farm', a: 30},
-			{ y: 'Tarak Mehta', a: 75},
-			{ y: 'swimming', a: 50},
-			{ y: 'Man vs Wild', a: 25 },
-			{ y: 'Nike Launches', a: 40}
-		],
+		data: data_bar
+		// [
+		// 	{ y: data_bar[0][1], a: data_bar[1][1]},
+		// 	{ y: data_bar[0][2], a: data_bar[1][2] },
+		// 	{ y: data_bar[0][3], a: data_bar[1][3]},
+		// 	{ y: data_bar[0][4], a: data_bar[1][4]},
+		// 	{ y: data_bar[0][5], a: data_bar[1][5]},
+		// 	{ y: data_bar[0][6], a: data_bar[1][6] },
+		// 	{ y: data_bar[0][7], a: data_bar[1][7]}
+		// ]
+		,
 		xkey: 'y',
-		ykeys: ['a'],
-		labels: ['Time Spent [mins]',],
+		ykeys: 'a',
+		labels: ['Time Spent in %',],
 		lineColors: ['#00c5fb','#0253cc'],
 		lineWidth: '3px',
 		barColors: ['#74AC4A'],
@@ -62,28 +65,23 @@ $(document).ready(function() {
 	});
 	});
 	
+	});
 	// Line Chart
 	
-	Morris.Line({
-		element: 'line-charts',
-		data: [
-			{ y: '2006', a: 50, b: 90 },
-			{ y: '2007', a: 75,  b: 65 },
-			{ y: '2008', a: 50,  b: 40 },
-			{ y: '2009', a: 75,  b: 65 },
-			{ y: '2010', a: 50,  b: 40 },
-			{ y: '2011', a: 75,  b: 65 },
-			{ y: '2012', a: 100, b: 50 }
-		],
-		xkey: 'y',
-		ykeys: ['a', 'b'],
-		labels: ['Laptop/computer', 'Phone'],
-		lineColors: ['#95BDFF','#74AC4A'],
-		lineWidth: '3px',
-		resize: true,
-		redraw: true
-	});
-	
+	$.getJSON('/barg_data',function(data_barg){
+		Morris.Bar({
+			element: 'barg-charts',
+			data: data_barg,
+			xkey: 'y',
+			ykeys: 'a',
+			labels: ['count in %'],
+			lineColors: ['#00c5fb','#0253cc'],
+			lineWidth: '3px',
+			barColors: ['#74AC4A'],
+			resize: true,
+			redraw: true
+		});
+		});	
 	// Donut Chart
 	$.getJSON('/donut_data', function(data) {
 	Morris.Donut({
