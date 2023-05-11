@@ -450,27 +450,28 @@ def area_chart():
     data_dict = [{'y': row[0], 'a': int(row[1]/60)} for row in data]
     print(data_dict)
     return jsonify(data_dict)
-# bot = ChatBot('Bot')
 
-# # Train the bot using the English corpus
-# trainer = ChatterBotCorpusTrainer(bot)
-# trainer.train("chatterbot.corpus.english")
+bot = ChatBot('Bot')
 
-# # Define a route for the API endpoint
-# @app.route('/api/chatbot', methods=['POST'])
-# def chatbot():
-#     # Get the user's message from the POST request
+# Train the bot using the English corpus
+trainer = ChatterBotCorpusTrainer(bot)
+trainer.train("chatterbot.corpus.english")
 
-#     user_message = request.json['message']
-#     print("um",user_message)
+# Define a route for the API endpoint
+@app.route('/api/chatbot', methods=['POST'])
+def chatbot():
+    # Get the user's message from the POST request
 
-#     # Get a response from the chat bot
-#     bot_response = bot.get_response(user_message)
-#     print("br",bot_response)
+    user_message = request.json['message']
+    print("um",user_message)
 
-#     # Return the response as a JSON object
+    # Get a response from the chat bot
+    bot_response = bot.get_response(user_message)
+    print("br",bot_response)
 
-#     return jsonify({'message': str(bot_response)})
+    # Return the response as a JSON object
+
+    return jsonify({'message': str(bot_response)})
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt=None):
